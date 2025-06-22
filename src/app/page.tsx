@@ -13,21 +13,21 @@ export default function Home() {
   const testimonials = [
     {
       name: "Alex Johnson",
-      avatar: "https://source.unsplash.com/100x100?man,portrait",
+      avatar: "https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=100&h=100&auto=format&fit=crop",
       avatarHint: "man portrait",
       text: "The Serengeti migration safari was a dream come true. Our guide, Joseph, was incredibly knowledgeable and made the experience unforgettable. I can't recommend Safari Navigator enough!",
       rating: 5,
     },
     {
       name: "Maria Garcia",
-      avatar: "https://source.unsplash.com/100x100?woman,portrait",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&h=100&auto=format&fit=crop",
       avatarHint: "woman portrait",
       text: "Climbing Kilimanjaro was the hardest and most rewarding thing I've ever done. The support from the Safari Navigator team was phenomenal from start to finish.",
       rating: 5,
     },
     {
       name: "David Smith",
-      avatar: "https://source.unsplash.com/100x100?man,portrait,smiling",
+      avatar: "https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?q=80&w=100&h=100&auto=format&fit=crop",
       avatarHint: "man portrait smiling",
       text: "A perfect blend of adventure and relaxation. The Ngorongoro Crater was breathtaking, and the Zanzibar beaches were paradise. Flawless organization.",
       rating: 5,
@@ -45,7 +45,7 @@ export default function Home() {
     <div className="flex flex-col">
       <section className="relative h-[60vh] md:h-[80vh] w-full">
         <Image
-          src="https://source.unsplash.com/1920x1080?safari,sunset"
+          src="https://images.unsplash.com/photo-1547471080-7cc2d5d88e93?q=80&w=1920&auto=format&fit=crop"
           alt="Elephants on a safari in Tanzania"
           fill
           className="object-cover brightness-50"

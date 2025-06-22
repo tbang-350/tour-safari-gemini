@@ -18,7 +18,7 @@ export default function ContactPage() {
     <div>
       <section className="relative h-[40vh] w-full flex items-center justify-center">
         <Image
-          src="https://source.unsplash.com/1920x600?path,forest"
+          src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1920&auto=format&fit=crop"
           alt="A path leading into the forest"
           fill
           className="object-cover brightness-50"
@@ -97,7 +97,7 @@ export default function ContactPage() {
                </div>
 
                <div className="mt-8">
-                <Image src="https://source.unsplash.com/600x400?arusha,map" width={600} height={400} alt="Map showing office location in Arusha" className="rounded-lg shadow-lg" data-ai-hint="arusha map" />
+                <Image src="https://images.unsplash.com/photo-1594498302112-17606148aa61?q=80&w=600&auto=format&fit=crop" width={600} height={400} alt="Map showing office location in Arusha" className="rounded-lg shadow-lg" data-ai-hint="arusha map" />
                </div>
             </div>
           </div>

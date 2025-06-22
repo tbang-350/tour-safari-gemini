@@ -49,7 +49,7 @@ export default function ToursPage() {
     <div>
       <section className="relative h-[40vh] w-full flex items-center justify-center">
         <Image
-          src="https://source.unsplash.com/1920x600?safari,vehicle,dusty"
+          src="https://images.unsplash.com/photo-1534767228391-b3b19b0f4f5a?q=80&w=1920&auto=format&fit=crop"
           alt="Safari vehicle on a dusty road"
           fill
           className="object-cover brightness-50"

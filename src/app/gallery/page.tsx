@@ -8,26 +8,26 @@ export const metadata: Metadata = {
 };
 
 export default function GalleryPage() {
-  const images = [
-    { src: "https://source.unsplash.com/600x400?lion,resting", alt: "A lion resting on a rock", hint: "lion resting" },
-    { src: "https://source.unsplash.com/400x600?giraffe,acacia", alt: "A giraffe eating from a tall acacia tree", hint: "giraffe acacia" },
-    { src: "https://source.unsplash.com/600x400?elephants,waterhole", alt: "A herd of elephants by a waterhole", hint: "elephants waterhole" },
-    { src: "https://source.unsplash.com/600x400?kilimanjaro,sunrise", alt: "The summit of Mount Kilimanjaro at sunrise", hint: "kilimanjaro sunrise" },
-    { src: "https://source.unsplash.com/600x400?wildebeest,migration", alt: "Wildebeest crossing the Mara River", hint: "wildebeest migration" },
-    { src: "https://source.unsplash.com/400x600?maasai,warrior", alt: "A Maasai warrior in traditional clothing", hint: "maasai warrior" },
-    { src: "https://source.unsplash.com/600x400?serengeti,sunset", alt: "A beautiful sunset over the Serengeti plains", hint: "serengeti sunset" },
-    { src: "https://source.unsplash.com/600x400?leopard,tree", alt: "A leopard lounging on a tree branch", hint: "leopard tree" },
-    { src: "https://source.unsplash.com/600x400?flamingos,lake", alt: "Flamingos in Lake Manyara", hint: "flamingos lake" },
-    { src: "https://source.unsplash.com/400x600?ngorongoro,crater", alt: "A stunning view of the Ngorongoro Crater", hint: "ngorongoro crater" },
-    { src: "https://source.unsplash.com/600x400?zanzibar,dhow", alt: "A traditional dhow boat on the coast of Zanzibar", hint: "zanzibar dhow" },
-    { src: "https://source.unsplash.com/600x400?cheetahs,savannah", alt: "A family of cheetahs on the savannah", hint: "cheetahs savannah" },
+    const images = [
+    { src: "https://images.unsplash.com/photo-1521638210045-8c333417e651?q=80&w=600&h=400&auto=format&fit=crop", alt: "A lion resting on a rock", hint: "lion resting", orientation: "landscape" },
+    { src: "https://images.unsplash.com/photo-1534437431704-a3203301724d?q=80&w=400&h=600&auto=format&fit=crop", alt: "A giraffe eating from a tall acacia tree", hint: "giraffe acacia", orientation: "portrait" },
+    { src: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?q=80&w=600&h=400&auto=format&fit=crop", alt: "A herd of elephants by a waterhole", hint: "elephants waterhole", orientation: "landscape" },
+    { src: "https://images.unsplash.com/photo-1589983973875-9cb14e74751a?q=80&w=600&h=400&auto=format&fit=crop", alt: "The summit of Mount Kilimanjaro at sunrise", hint: "kilimanjaro sunrise", orientation: "landscape" },
+    { src: "https://images.unsplash.com/photo-1561049282-303bcec3b8a1?q=80&w=600&h=400&auto=format&fit=crop", alt: "Wildebeest crossing the Mara River", hint: "wildebeest migration", orientation: "landscape" },
+    { src: "https://images.unsplash.com/photo-1531206715624-7864e243663b?q=80&w=400&h=600&auto=format&fit=crop", alt: "A Maasai warrior in traditional clothing", hint: "maasai warrior", orientation: "portrait" },
+    { src: "https://images.unsplash.com/photo-1502604979505-13c54c33f114?q=80&w=600&h=400&auto=format&fit=crop", alt: "A beautiful sunset over the Serengeti plains", hint: "serengeti sunset", orientation: "landscape" },
+    { src: "https://images.unsplash.com/photo-1614028542498-3855c4217112?q=80&w=600&h=400&auto=format&fit=crop", alt: "A leopard lounging on a tree branch", hint: "leopard tree", orientation: "landscape" },
+    { src: "https://images.unsplash.com/photo-1575496009477-88992314a480?q=80&w=600&h=400&auto=format&fit=crop", alt: "Flamingos in Lake Manyara", hint: "flamingos lake", orientation: "landscape" },
+    { src: "https://images.unsplash.com/photo-1590483803561-83b68078df25?q=80&w=400&h=600&auto=format&fit=crop", alt: "A stunning view of the Ngorongoro Crater", hint: "ngorongoro crater", orientation: "portrait" },
+    { src: "https://images.unsplash.com/photo-1578326236940-94a1d955169a?q=80&w=600&h=400&auto=format&fit=crop", alt: "A traditional dhow boat on the coast of Zanzibar", hint: "zanzibar dhow", orientation: "landscape" },
+    { src: "https://images.unsplash.com/photo-1560361361-93e23ac6e344?q=80&w=600&h=400&auto=format&fit=crop", alt: "A family of cheetahs on the savannah", hint: "cheetahs savannah", orientation: "landscape" },
   ];
 
   return (
     <div>
       <section className="relative h-[40vh] w-full flex items-center justify-center">
         <Image
-          src="https://source.unsplash.com/1920x600?savannah,sunset"
+          src="https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1920&auto=format&fit=crop"
           alt="A colorful sunset over the savannah"
           fill
           className="object-cover brightness-50"
@@ -43,10 +43,10 @@ export default function GalleryPage() {
         <div className="container mx-auto px-4">
           <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             {images.map((image, index) => {
-              const isPortrait = image.src.includes('400x600');
+              const isPortrait = image.orientation === 'portrait';
               const largeWidth = isPortrait ? 800 : 1200;
               const largeHeight = isPortrait ? 1200 : 800;
-              const largeSrc = image.src.replace(/\d+x\d+/, `${largeWidth}x${largeHeight}`);
+              const largeSrc = image.src.replace(/w=\d+/, `w=${largeWidth}`).replace(/h=\d+/, `h=${largeHeight}`);
 
               return (
               <Dialog key={index}>
@@ -55,8 +55,8 @@ export default function GalleryPage() {
                     <Image
                       src={image.src}
                       alt={image.alt}
-                      width={600}
-                      height={400}
+                      width={isPortrait ? 400 : 600}
+                      height={isPortrait ? 600 : 400}
                       className="w-full h-auto object-cover"
                       data-ai-hint={image.hint}
                     />

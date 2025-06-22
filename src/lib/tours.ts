@@ -5,12 +5,12 @@ export const tours: Tour[] = [
     id: 1,
     slug: 'serengeti-migration-safari',
     name: 'Serengeti Migration Safari',
-    description: 'Witness the Great Wildebeest Migration, one of nature\'s most spectacular events, across the vast plains of the Serengeti.',
-    heroImage: 'https://source.unsplash.com/800x600?serengeti,migration',
+    description: "Witness the Great Wildebeest Migration, one of nature's most spectacular events, across the vast plains of the Serengeti.",
+    heroImage: 'https://images.unsplash.com/photo-1561049282-303bcec3b8a1?q=80&w=800&auto=format&fit=crop',
     images: [
-        'https://source.unsplash.com/400x300?wildebeest,river', 
-        'https://source.unsplash.com/400x300?lion,serengeti', 
-        'https://source.unsplash.com/400x300?ngorongoro,crater'
+        'https://images.unsplash.com/photo-1527488053901-a6b1898c60f2?q=80&w=400&auto=format&fit=crop', 
+        'https://images.unsplash.com/photo-1549688403-1a851926639d?q=80&w=400&auto=format&fit=crop', 
+        'https://images.unsplash.com/photo-1590483803561-83b68078df25?q=80&w=400&auto=format&fit=crop'
     ],
     price: 3500,
     duration: 7,
@@ -34,11 +34,11 @@ export const tours: Tour[] = [
     slug: 'kilimanjaro-climb-lemosho',
     name: 'Kilimanjaro Climb - Lemosho Route',
     description: 'Conquer the roof of Africa via the beautiful and scenic Lemosho route, known for its high success rates and stunning vistas.',
-    heroImage: 'https://source.unsplash.com/800x600?kilimanjaro,snow',
+    heroImage: 'https://images.unsplash.com/photo-1589983973875-9cb14e74751a?q=80&w=800&auto=format&fit=crop',
     images: [
-        'https://source.unsplash.com/400x300?kilimanjaro,trekking', 
-        'https://source.unsplash.com/400x300?kilimanjaro,sunrise', 
-        'https://source.unsplash.com/400x300?africa,mountain,landscape'
+        'https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=400&auto=format&fit=crop', 
+        'https://images.unsplash.com/photo-1601724041724-4f4a64392a84?q=80&w=400&auto=format&fit=crop', 
+        'https://images.unsplash.com/photo-1551009175-8a68da93d5f9?q=80&w=400&auto=format&fit=crop'
     ],
     price: 2800,
     duration: 8,
@@ -63,11 +63,11 @@ export const tours: Tour[] = [
     slug: 'zanzibar-beach-escape',
     name: 'Zanzibar Beach Escape',
     description: 'Relax and unwind on the pristine white-sand beaches of Zanzibar. Explore historic Stone Town and enjoy the turquoise waters.',
-    heroImage: 'https://source.unsplash.com/800x600?zanzibar,beach',
+    heroImage: 'https://images.unsplash.com/photo-1602164478153-34533924f115?q=80&w=800&auto=format&fit=crop',
     images: [
-        'https://source.unsplash.com/400x300?zanzibar,dhow,boat', 
-        'https://source.unsplash.com/400x300?stone,town,zanzibar', 
-        'https://source.unsplash.com/400x300?snorkeling,ocean'
+        'https://images.unsplash.com/photo-1578326236940-94a1d955169a?q=80&w=400&auto=format&fit=crop', 
+        'https://images.unsplash.com/photo-1595152762214-e53805373a0e?q=80&w=400&auto=format&fit=crop', 
+        'https://images.unsplash.com/photo-1507690325780-f62f451f28f1?q=80&w=400&auto=format&fit=crop'
     ],
     price: 1200,
     duration: 5,
@@ -88,12 +88,12 @@ export const tours: Tour[] = [
     id: 4,
     slug: 'tarangire-manyara-ngorongoro',
     name: 'Tanzania Classic Safari',
-    description: 'A short but intense safari visiting three of Tanzania\'s northern circuit gems: Tarangire, Lake Manyara, and the Ngorongoro Crater.',
-    heroImage: 'https://source.unsplash.com/800x600?tarangire,elephants',
+    description: "A short but intense safari visiting three of Tanzania's northern circuit gems: Tarangire, Lake Manyara, and the Ngorongoro Crater.",
+    heroImage: 'https://images.unsplash.com/photo-1617938356396-bb3991222446?q=80&w=800&auto=format&fit=crop',
     images: [
-        'https://source.unsplash.com/400x300?tarangire,baobab', 
-        'https://source.unsplash.com/400x300?lake,manyara,flamingos', 
-        'https://source.unsplash.com/400x300?ngorongoro,safari'
+        'https://images.unsplash.com/photo-1593531142194-e0c1274e1d75?q=80&w=400&auto=format&fit=crop', 
+        'https://images.unsplash.com/photo-1575496009477-88992314a480?q=80&w=400&auto=format&fit=crop', 
+        'https://images.unsplash.com/photo-1591242379930-b37d465f0b5d?q=80&w=400&auto=format&fit=crop'
     ],
     price: 1800,
     duration: 4,

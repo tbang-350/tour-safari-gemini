@@ -12,7 +12,7 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const tour = getTourBySlug(params.slug);
+  const tour = await getTourBySlug(params.slug);
   if (!tour) {
     return {
       title: "Tour Not Found"
@@ -31,8 +31,8 @@ export async function generateStaticParams() {
 }
 
 
-export default function TourDetailPage({ params }: Props) {
-  const tour = getTourBySlug(params.slug);
+export default async function TourDetailPage({ params }: Props) {
+  const tour = await getTourBySlug(params.slug);
 
   if (!tour) {
     notFound();

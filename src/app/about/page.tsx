@@ -1,38 +1,47 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { CheckCircle, Eye, Shield, Sprout } from "lucide-react";
+import { getImageUrl } from "@/lib/pixabay";
 
 export const metadata: Metadata = {
   title: "About Us",
   description: "Learn about Safari Navigator's mission, our expert team, and why we are the best choice for your East African adventure.",
 };
 
-export default function AboutPage() {
-  const teamMembers = [
+export default async function AboutPage() {
+  const teamMembersData = [
     {
       name: "Josephat 'Joseph' Mmbando",
       role: "Lead Guide & Founder",
       bio: "With over 15 years of experience in the Tanzanian bush, Joseph's passion for wildlife is contagious. He founded Safari Navigator to share the magic of his homeland with the world.",
-      avatar: "https://cdn.pixabay.com/photo/2015/01/08/18/30/man-593333_960_720.jpg",
-      hint: "guide portrait"
+      avatarQuery: "male guide portrait",
     },
     {
       name: "Fatima Al-Jabir",
       role: "Kilimanjaro Specialist",
       bio: "Fatima has summited Kilimanjaro over 50 times. Her expertise in high-altitude trekking and relentless optimism ensures every climber is safe and motivated.",
-      avatar: "https://cdn.pixabay.com/photo/2021/07/20/12/35/woman-6480136_960_720.jpg",
-      hint: "female guide portrait"
+      avatarQuery: "female guide portrait",
     },
     {
       name: "David Chen",
       role: "Cultural Tour Coordinator",
       bio: "David bridges cultures, creating authentic interactions with local communities like the Maasai and Hadzabe. His tours offer a deeper understanding of Tanzanian life.",
-      avatar: "https://cdn.pixabay.com/photo/2016/11/18/19/07/happy-1836445_960_720.jpg",
-      hint: "guide smiling"
+      avatarQuery: "guide smiling",
     },
   ];
+
+  const [heroImage, storyImage, ...teamAvatars] = await Promise.all([
+    getImageUrl("acacia tree sunset", 1280, 512),
+    getImageUrl("safari vehicle kilimanjaro", 600, 400),
+    ...teamMembersData.map(member => getImageUrl(member.avatarQuery, 100, 100))
+  ]);
+  
+  const teamMembers = teamMembersData.map((member, i) => ({
+      ...member,
+      avatar: teamAvatars[i],
+  }));
 
   const whyChooseUs = [
     {
@@ -61,7 +70,7 @@ export default function AboutPage() {
     <div className="bg-background">
       <section className="relative h-[40vh] w-full flex items-center justify-center">
         <Image
-          src="https://cdn.pixabay.com/photo/2015/04/10/16/26/africa-716491_1280.jpg"
+          src={heroImage}
           alt="Acacia tree at sunset"
           fill
           className="object-cover brightness-50"
@@ -87,7 +96,7 @@ export default function AboutPage() {
             </div>
             <div>
               <Image
-                src="https://cdn.pixabay.com/photo/2015/06/20/09/58/mount-kilimanjaro-815309_1280.jpg"
+                src={storyImage}
                 alt="Safari vehicle with a view of Mount Kilimanjaro"
                 width={600}
                 height={400}
@@ -130,7 +139,7 @@ export default function AboutPage() {
               <Card key={member.name} className="text-center border-border shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
                 <CardContent className="p-6">
                   <Avatar className="w-24 h-24 mx-auto mb-4 border-4 border-primary">
-                    <AvatarImage src={member.avatar} alt={member.name} data-ai-hint={member.hint} />
+                    <AvatarImage src={member.avatar} alt={member.name} data-ai-hint={member.avatarQuery} />
                     <AvatarFallback>{member.name.substring(0, 2)}</AvatarFallback>
                   </Avatar>
                   <h3 className="text-xl font-headline font-semibold text-foreground">{member.name}</h3>

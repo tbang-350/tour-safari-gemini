@@ -1,17 +1,15 @@
 import type { Tour } from '@/types';
+import { getImageUrl } from './pixabay';
 
-export const tours: Tour[] = [
+// Raw tour data with image queries instead of URLs
+const toursData = [
   {
     id: 1,
     slug: 'serengeti-migration-safari',
     name: 'Serengeti Migration Safari',
     description: "Witness the Great Wildebeest Migration, one of nature's most spectacular events, across the vast plains of the Serengeti.",
-    heroImage: 'https://cdn.pixabay.com/photo/2014/09/27/00/23/wildebeest-462833_1280.jpg',
-    images: [
-        'https://cdn.pixabay.com/photo/2017/08/01/10/05/buffalo-2564848_1280.jpg', 
-        'https://cdn.pixabay.com/photo/2016/01/02/01/29/lion-1117144_1280.jpg', 
-        'https://cdn.pixabay.com/photo/2018/06/03/14/21/ngorongoro-crater-3450917_1280.jpg'
-    ],
+    heroImageQuery: 'serengeti migration',
+    imageQueries: ['wildebeest river', 'lion serengeti', 'ngorongoro crater'],
     price: 3500,
     duration: 7,
     destinations: ['Serengeti', 'Ngorongoro Crater'],
@@ -34,12 +32,8 @@ export const tours: Tour[] = [
     slug: 'kilimanjaro-climb-lemosho',
     name: 'Kilimanjaro Climb - Lemosho Route',
     description: 'Conquer the roof of Africa via the beautiful and scenic Lemosho route, known for its high success rates and stunning vistas.',
-    heroImage: 'https://cdn.pixabay.com/photo/2018/11/13/21/44/kilimanjaro-3814324_1280.jpg',
-    images: [
-        'https://cdn.pixabay.com/photo/2017/01/21/20/49/hiker-1998341_1280.jpg', 
-        'https://cdn.pixabay.com/photo/2012/12/28/10/22/kilimanjaro-72793_1280.jpg', 
-        'https://cdn.pixabay.com/photo/2016/09/19/23/07/kilimanjaro-1681286_1280.jpg'
-    ],
+    heroImageQuery: 'kilimanjaro snow',
+    imageQueries: ['kilimanjaro trekking', 'kilimanjaro sunrise', 'africa mountain landscape'],
     price: 2800,
     duration: 8,
     destinations: ['Mount Kilimanjaro'],
@@ -63,12 +57,8 @@ export const tours: Tour[] = [
     slug: 'zanzibar-beach-escape',
     name: 'Zanzibar Beach Escape',
     description: 'Relax and unwind on the pristine white-sand beaches of Zanzibar. Explore historic Stone Town and enjoy the turquoise waters.',
-    heroImage: 'https://cdn.pixabay.com/photo/2016/10/21/20/55/zanzibar-1759235_1280.jpg',
-    images: [
-        'https://cdn.pixabay.com/photo/2017/01/05/11/47/zanzibar-1955217_1280.jpg', 
-        'https://cdn.pixabay.com/photo/2021/04/22/09/24/zanzibar-6198939_1280.jpg', 
-        'https://cdn.pixabay.com/photo/2020/06/17/09/25/turtle-5308693_1280.jpg'
-    ],
+    heroImageQuery: 'zanzibar beach',
+    imageQueries: ['zanzibar dhow boat', 'stone town zanzibar', 'snorkeling ocean'],
     price: 1200,
     duration: 5,
     destinations: ['Zanzibar'],
@@ -89,12 +79,8 @@ export const tours: Tour[] = [
     slug: 'tarangire-manyara-ngorongoro',
     name: 'Tanzania Classic Safari',
     description: "A short but intense safari visiting three of Tanzania's northern circuit gems: Tarangire, Lake Manyara, and the Ngorongoro Crater.",
-    heroImage: 'https://cdn.pixabay.com/photo/2022/04/10/12/28/tarangire-7123328_1280.jpg',
-    images: [
-        'https://cdn.pixabay.com/photo/2018/05/29/22/23/africa-3440121_1280.jpg', 
-        'https://cdn.pixabay.com/photo/2017/07/25/01/22/cat-2536662_1280.jpg', 
-        'https://cdn.pixabay.com/photo/2021/11/11/17/11/zebra-6787163_1280.jpg'
-    ],
+    heroImageQuery: 'tarangire elephants',
+    imageQueries: ['lake manyara flamingos', 'leopard tree tanzania', 'zebra serengeti'],
     price: 1800,
     duration: 4,
     destinations: ['Tarangire', 'Lake Manyara', 'Ngorongoro Crater'],
@@ -111,10 +97,46 @@ export const tours: Tour[] = [
   },
 ];
 
-export function getTourBySlug(slug: string): Tour | undefined {
-  return tours.find(tour => tour.slug === slug);
+async function hydrateTour(tourData: (typeof toursData)[0], imageSize: { heroWidth: number; heroHeight: number; galleryWidth: number; galleryHeight: number }): Promise<Tour> {
+  const [heroImage, ...galleryImages] = await Promise.all([
+    getImageUrl(tourData.heroImageQuery, imageSize.heroWidth, imageSize.heroHeight),
+    ...tourData.imageQueries.map(query => getImageUrl(query, imageSize.galleryWidth, imageSize.galleryHeight))
+  ]);
+  
+  const { heroImageQuery, imageQueries, ...rest } = tourData;
+
+  return {
+    ...rest,
+    heroImage,
+    images: galleryImages,
+  };
 }
 
-export function getFeaturedTours(): Tour[] {
-    return tours.filter(tour => tour.featured);
+
+export async function getTourBySlug(slug: string): Promise<Tour | undefined> {
+  const tourData = toursData.find(tour => tour.slug === slug);
+  if (!tourData) {
+    return undefined;
+  }
+  return hydrateTour(tourData, { heroWidth: 1280, heroHeight: 720, galleryWidth: 400, galleryHeight: 300 });
 }
+
+export async function getFeaturedTours(): Promise<Tour[]> {
+    const featuredToursData = toursData.filter(tour => tour.featured);
+    return Promise.all(
+      featuredToursData.map(tourData => 
+        hydrateTour(tourData, { heroWidth: 400, heroHeight: 250, galleryWidth: 400, galleryHeight: 300 })
+      )
+    );
+}
+
+export async function getAllTours(): Promise<Tour[]> {
+    return Promise.all(
+      toursData.map(tourData => 
+        hydrateTour(tourData, { heroWidth: 400, heroHeight: 250, galleryWidth: 400, galleryHeight: 300 })
+      )
+    );
+}
+
+// this is a static list for generating static pages
+export const tours = toursData;

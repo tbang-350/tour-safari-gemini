@@ -7,18 +7,23 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { WhatsappIcon } from "@/components/icons/whatsapp-icon";
+import { getImageUrl } from "@/lib/pixabay";
 
 export const metadata: Metadata = {
   title: "Contact Us",
   description: "Get in touch with Safari Navigator to plan your dream safari. Contact us via our inquiry form, email, phone, or WhatsApp.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+    const [heroImage, mapImage] = await Promise.all([
+        getImageUrl("path forest", 1280, 512),
+        getImageUrl("arusha map", 600, 400),
+    ]);
   return (
     <div>
       <section className="relative h-[40vh] w-full flex items-center justify-center">
         <Image
-          src="https://cdn.pixabay.com/photo/2015/03/26/09/41/road-690073_1280.jpg"
+          src={heroImage}
           alt="A path leading into the forest"
           fill
           className="object-cover brightness-50"
@@ -97,7 +102,7 @@ export default function ContactPage() {
                </div>
 
                <div className="mt-8">
-                <Image src="https://cdn.pixabay.com/photo/2016/11/18/13/23/action-1834465_1280.png" width={600} height={400} alt="Map showing office location in Arusha" className="rounded-lg shadow-lg" data-ai-hint="arusha map" />
+                <Image src={mapImage} width={600} height={400} alt="Map showing office location in Arusha" className="rounded-lg shadow-lg" data-ai-hint="arusha map" />
                </div>
             </div>
           </div>

@@ -1,33 +1,47 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { getImageUrl } from "@/lib/pixabay";
 
 export const metadata: Metadata = {
   title: "Gallery",
   description: "Explore the breathtaking landscapes and majestic wildlife of East Africa through our gallery of photos and videos from our safari tours.",
 };
 
-export default function GalleryPage() {
-    const images = [
-      { src: "https://cdn.pixabay.com/photo/2018/05/11/15/28/lion-3390315_1280.jpg", alt: "A lion resting on a rock", hint: "lion resting", orientation: "landscape" },
-      { src: "https://cdn.pixabay.com/photo/2015/10/06/22/09/giraffe-974513_1280.jpg", alt: "A giraffe eating from a tall acacia tree", hint: "giraffe acacia", orientation: "portrait" },
-      { src: "https://cdn.pixabay.com/photo/2016/11/14/04/45/elephant-1822636_1280.jpg", alt: "A herd of elephants by a waterhole", hint: "elephants waterhole", orientation: "landscape" },
-      { src: "https://cdn.pixabay.com/photo/2016/09/01/18/59/kilimanjaro-1636829_1280.jpg", alt: "The summit of Mount Kilimanjaro at sunrise", hint: "kilimanjaro sunrise", orientation: "landscape" },
-      { src: "https://cdn.pixabay.com/photo/2019/10/29/18/51/wildebeest-4588267_1280.jpg", alt: "Wildebeest crossing the Mara River", hint: "wildebeest migration", orientation: "landscape" },
-      { src: "https://cdn.pixabay.com/photo/2015/04/14/11/38/maasai-722129_1280.jpg", alt: "A Maasai warrior in traditional clothing", hint: "maasai warrior", orientation: "portrait" },
-      { src: "https://cdn.pixabay.com/photo/2017/10/22/10/16/serengeti-2877477_1280.jpg", alt: "A beautiful sunset over the Serengeti plains", hint: "serengeti sunset", orientation: "landscape" },
-      { src: "https://cdn.pixabay.com/photo/2013/04/06/11/33/leopard-101116_1280.jpg", alt: "A leopard lounging on a tree branch", hint: "leopard tree", orientation: "landscape" },
-      { src: "https://cdn.pixabay.com/photo/2017/02/18/13/55/flamingos-2077378_1280.jpg", alt: "Flamingos in Lake Manyara", hint: "flamingos lake", orientation: "landscape" },
-      { src: "https://cdn.pixabay.com/photo/2019/11/02/05/52/ngorongoro-4595228_1280.jpg", alt: "A stunning view of the Ngorongoro Crater", hint: "ngorongoro crater", orientation: "portrait" },
-      { src: "https://cdn.pixabay.com/photo/2013/03/02/02/41/zanzibar-88989_1280.jpg", alt: "A traditional dhow boat on the coast of Zanzibar", hint: "zanzibar dhow", orientation: "landscape" },
-      { src: "https://cdn.pixabay.com/photo/2019/09/04/08/24/cheetah-4450418_1280.jpg", alt: "A family of cheetahs on the savannah", hint: "cheetahs savannah", orientation: "landscape" },
+export default async function GalleryPage() {
+    const imageQueries = [
+      { query: "lion resting", alt: "A lion resting on a rock", orientation: "landscape" },
+      { query: "giraffe acacia", alt: "A giraffe eating from a tall acacia tree", orientation: "portrait" },
+      { query: "elephants waterhole", alt: "A herd of elephants by a waterhole", orientation: "landscape" },
+      { query: "kilimanjaro sunrise", alt: "The summit of Mount Kilimanjaro at sunrise", orientation: "landscape" },
+      { query: "wildebeest migration", alt: "Wildebeest crossing the Mara River", orientation: "landscape" },
+      { query: "maasai warrior", alt: "A Maasai warrior in traditional clothing", orientation: "portrait" },
+      { query: "serengeti sunset", alt: "A beautiful sunset over the Serengeti plains", orientation: "landscape" },
+      { query: "leopard tree", alt: "A leopard lounging on a tree branch", orientation: "landscape" },
+      { query: "flamingos lake", alt: "Flamingos in Lake Manyara", orientation: "landscape" },
+      { query: "ngorongoro crater view", alt: "A stunning view of the Ngorongoro Crater", orientation: "portrait" },
+      { query: "zanzibar dhow boat", alt: "A traditional dhow boat on the coast of Zanzibar", orientation: "landscape" },
+      { query: "cheetahs savannah", alt: "A family of cheetahs on the savannah", orientation: "landscape" },
     ];
+
+    const [heroImage, ...galleryImages] = await Promise.all([
+        getImageUrl("savannah sunset", 1280, 512),
+        ...imageQueries.map(async (img) => {
+            const isPortrait = img.orientation === 'portrait';
+            const width = isPortrait ? 400 : 600;
+            const height = isPortrait ? 600 : 400;
+            const url = await getImageUrl(img.query, width, height);
+            return { ...img, src: url };
+        })
+    ]);
+    
+    const images = galleryImages;
 
   return (
     <div>
       <section className="relative h-[40vh] w-full flex items-center justify-center">
         <Image
-          src="https://cdn.pixabay.com/photo/2017/10/22/10/16/serengeti-2877477_1280.jpg"
+          src={heroImage}
           alt="A colorful sunset over the savannah"
           fill
           className="object-cover brightness-50"
@@ -57,7 +71,7 @@ export default function GalleryPage() {
                       width={width}
                       height={height}
                       className="w-full h-auto object-cover"
-                      data-ai-hint={image.hint}
+                      data-ai-hint={image.query}
                     />
                   </div>
                 </DialogTrigger>
@@ -72,7 +86,7 @@ export default function GalleryPage() {
                     width={1200}
                     height={800}
                     className="w-full h-auto object-contain rounded-lg"
-                    data-ai-hint={image.hint}
+                    data-ai-hint={image.query}
                   />
                 </DialogContent>
               </Dialog>

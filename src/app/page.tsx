@@ -1,38 +1,46 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getFeaturedTours } from "@/lib/tours";
 import { TourCard } from "@/components/tour-card";
 import { ArrowRight, Star } from "lucide-react";
+import { getImageUrl } from "@/lib/pixabay";
 
-export default function Home() {
-  const featuredTours = getFeaturedTours();
-
-  const testimonials = [
+export default async function Home() {
+  const featuredTours = await getFeaturedTours();
+  
+  const testimonialsData = [
     {
       name: "Alex Johnson",
-      avatar: "https://cdn.pixabay.com/photo/2016/11/21/12/42/beard-1845166_960_720.jpg",
-      avatarHint: "man portrait",
+      avatarQuery: "man portrait",
       text: "The Serengeti migration safari was a dream come true. Our guide, Joseph, was incredibly knowledgeable and made the experience unforgettable. I can't recommend Safari Navigator enough!",
       rating: 5,
     },
     {
       name: "Maria Garcia",
-      avatar: "https://cdn.pixabay.com/photo/2017/08/01/08/29/woman-2563491_960_720.jpg",
-      avatarHint: "woman portrait",
+      avatarQuery: "woman portrait",
       text: "Climbing Kilimanjaro was the hardest and most rewarding thing I've ever done. The support from the Safari Navigator team was phenomenal from start to finish.",
       rating: 5,
     },
     {
       name: "David Smith",
-      avatar: "https://cdn.pixabay.com/photo/2016/03/27/17/42/man-1283235_960_720.jpg",
-      avatarHint: "man portrait smiling",
+      avatarQuery: "man portrait smiling",
       text: "A perfect blend of adventure and relaxation. The Ngorongoro Crater was breathtaking, and the Zanzibar beaches were paradise. Flawless organization.",
       rating: 5,
     },
   ];
+
+  const [heroImage, ...testimonialAvatars] = await Promise.all([
+    getImageUrl("safari sunset", 1920, 1080),
+    ...testimonialsData.map(t => getImageUrl(t.avatarQuery, 100, 100))
+  ]);
+  
+  const testimonials = testimonialsData.map((t, i) => ({
+      ...t,
+      avatar: testimonialAvatars[i],
+  }));
 
   const partners = [
     { name: "TripAdvisor", logo: "https://placehold.co/150x50.png", hint: "TripAdvisor logo" },
@@ -45,7 +53,7 @@ export default function Home() {
     <div className="flex flex-col">
       <section className="relative h-[60vh] md:h-[80vh] w-full">
         <Image
-          src="https://cdn.pixabay.com/photo/2017/05/12/08/29/africa-2305763_1280.jpg"
+          src={heroImage}
           alt="Elephants on a safari in Tanzania"
           fill
           className="object-cover brightness-50"
@@ -117,7 +125,7 @@ export default function Home() {
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     <Avatar>
-                      <AvatarImage src={testimonial.avatar} alt={testimonial.name} data-ai-hint={testimonial.avatarHint} />
+                      <AvatarImage src={testimonial.avatar} alt={testimonial.name} data-ai-hint={testimonial.avatarQuery} />
                       <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <div className="ml-4">

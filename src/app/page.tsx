@@ -50,6 +50,7 @@ export default function Home() {
           fill
           className="object-cover brightness-50"
           data-ai-hint="safari sunset"
+          priority
         />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white p-4">
           <h1 className="text-4xl md:text-6xl font-headline font-bold !text-primary-foreground drop-shadow-lg">

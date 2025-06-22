@@ -9,29 +9,28 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   const images = [
-    { src: "https://placehold.co/600x400.png", alt: "A lion resting on a rock", hint: "lion resting" },
-    { src: "https://placehold.co/400x600.png", alt: "A giraffe eating from a tall acacia tree", hint: "giraffe acacia" },
-    { src: "https://placehold.co/600x400.png", alt: "A herd of elephants by a waterhole", hint: "elephants waterhole" },
-    { src: "https://placehold.co/600x400.png", alt: "The summit of Mount Kilimanjaro at sunrise", hint: "kilimanjaro sunrise" },
-    { src: "https://placehold.co/600x400.png", alt: "Wildebeest crossing the Mara River", hint: "wildebeest migration" },
-    { src: "https://placehold.co/400x600.png", alt: "A Maasai warrior in traditional clothing", hint: "maasai warrior" },
-    { src: "https://placehold.co/600x400.png", alt: "A beautiful sunset over the Serengeti plains", hint: "serengeti sunset" },
-    { src: "https://placehold.co/600x400.png", alt: "A leopard lounging on a tree branch", hint: "leopard tree" },
-    { src: "https://placehold.co/600x400.png", alt: "Flamingos in Lake Manyara", hint: "flamingos lake" },
-    { src: "https://placehold.co/400x600.png", alt: "A stunning view of the Ngorongoro Crater", hint: "ngorongoro crater" },
-    { src: "https://placehold.co/600x400.png", alt: "A traditional dhow boat on the coast of Zanzibar", hint: "zanzibar dhow" },
-    { src: "https://placehold.co/600x400.png", alt: "A family of cheetahs on the savannah", hint: "cheetahs savannah" },
+    { src: "https://source.unsplash.com/600x400?lion,resting", alt: "A lion resting on a rock", hint: "lion resting" },
+    { src: "https://source.unsplash.com/400x600?giraffe,acacia", alt: "A giraffe eating from a tall acacia tree", hint: "giraffe acacia" },
+    { src: "https://source.unsplash.com/600x400?elephants,waterhole", alt: "A herd of elephants by a waterhole", hint: "elephants waterhole" },
+    { src: "https://source.unsplash.com/600x400?kilimanjaro,sunrise", alt: "The summit of Mount Kilimanjaro at sunrise", hint: "kilimanjaro sunrise" },
+    { src: "https://source.unsplash.com/600x400?wildebeest,migration", alt: "Wildebeest crossing the Mara River", hint: "wildebeest migration" },
+    { src: "https://source.unsplash.com/400x600?maasai,warrior", alt: "A Maasai warrior in traditional clothing", hint: "maasai warrior" },
+    { src: "https://source.unsplash.com/600x400?serengeti,sunset", alt: "A beautiful sunset over the Serengeti plains", hint: "serengeti sunset" },
+    { src: "https://source.unsplash.com/600x400?leopard,tree", alt: "A leopard lounging on a tree branch", hint: "leopard tree" },
+    { src: "https://source.unsplash.com/600x400?flamingos,lake", alt: "Flamingos in Lake Manyara", hint: "flamingos lake" },
+    { src: "https://source.unsplash.com/400x600?ngorongoro,crater", alt: "A stunning view of the Ngorongoro Crater", hint: "ngorongoro crater" },
+    { src: "https://source.unsplash.com/600x400?zanzibar,dhow", alt: "A traditional dhow boat on the coast of Zanzibar", hint: "zanzibar dhow" },
+    { src: "https://source.unsplash.com/600x400?cheetahs,savannah", alt: "A family of cheetahs on the savannah", hint: "cheetahs savannah" },
   ];
 
   return (
     <div>
       <section className="relative h-[40vh] w-full flex items-center justify-center">
         <Image
-          src="https://placehold.co/1920x600.png"
+          src="https://source.unsplash.com/1920x600?savannah,sunset"
           alt="A colorful sunset over the savannah"
-          layout="fill"
-          objectFit="cover"
-          className="brightness-50"
+          fill
+          className="object-cover brightness-50"
           data-ai-hint="savannah sunset"
         />
         <div className="relative z-10 text-center text-white p-4">
@@ -43,7 +42,13 @@ export default function GalleryPage() {
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-            {images.map((image, index) => (
+            {images.map((image, index) => {
+              const isPortrait = image.src.includes('400x600');
+              const largeWidth = isPortrait ? 800 : 1200;
+              const largeHeight = isPortrait ? 1200 : 800;
+              const largeSrc = image.src.replace(/\d+x\d+/, `${largeWidth}x${largeHeight}`);
+
+              return (
               <Dialog key={index}>
                 <DialogTrigger asChild>
                   <div className="overflow-hidden rounded-lg cursor-pointer block transform hover:scale-105 transition-transform duration-300">
@@ -58,21 +63,22 @@ export default function GalleryPage() {
                   </div>
                 </DialogTrigger>
                 <DialogContent className="max-w-4xl p-0 border-0">
-                  <DialogHeader className="sr-only">
-                    <DialogTitle>{image.alt}</DialogTitle>
-                    <DialogDescription>A larger view of the image: {image.alt}</DialogDescription>
+                  <DialogHeader>
+                    <DialogTitle className="sr-only">{image.alt}</DialogTitle>
+                    <DialogDescription className="sr-only">A larger view of the image: {image.alt}</DialogDescription>
                   </DialogHeader>
                   <Image
-                    src={image.src.replace(/(\d+x\d+)/, '1200x800')/*.replace('&', '&amp;')*/ /*Removed this line, as it doesn't seem necessary anymore*/ }
+                    src={largeSrc}
                     alt={image.alt}
-                    width={1200}
-                    height={800}
+                    width={largeWidth}
+                    height={largeHeight}
                     className="w-full h-auto object-contain rounded-lg"
                     data-ai-hint={image.hint}
                   />
                 </DialogContent>
               </Dialog>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

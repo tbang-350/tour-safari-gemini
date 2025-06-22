@@ -18,11 +18,10 @@ export default function ContactPage() {
     <div>
       <section className="relative h-[40vh] w-full flex items-center justify-center">
         <Image
-          src="https://placehold.co/1920x600.png"
+          src="https://source.unsplash.com/1920x600?path,forest"
           alt="A path leading into the forest"
-          layout="fill"
-          objectFit="cover"
-          className="brightness-50"
+          fill
+          className="object-cover brightness-50"
           data-ai-hint="path forest"
         />
         <div className="relative z-10 text-center text-white p-4">
@@ -98,7 +97,7 @@ export default function ContactPage() {
                </div>
 
                <div className="mt-8">
-                <Image src="https://placehold.co/600x400.png" width={600} height={400} alt="Map showing office location in Arusha" className="rounded-lg shadow-lg" data-ai-hint="arusha map" />
+                <Image src="https://source.unsplash.com/600x400?arusha,map" width={600} height={400} alt="Map showing office location in Arusha" className="rounded-lg shadow-lg" data-ai-hint="arusha map" />
                </div>
             </div>
           </div>

@@ -53,9 +53,8 @@ export default function TourDetailPage({ params }: Props) {
         <Image
           src={tour.heroImage}
           alt={tour.name}
-          layout="fill"
-          objectFit="cover"
-          className="brightness-60"
+          fill
+          className="object-cover brightness-60"
           data-ai-hint={tour.destinations[0]}
         />
         <div className="relative z-10 flex flex-col items-start justify-end h-full text-white p-8 md:p-16">
@@ -103,10 +102,10 @@ export default function TourDetailPage({ params }: Props) {
                             {day.day}
                           </div>
                           {index < tour.itinerary.length - 1 && (
-                            <div className="w-0.5 h-full bg-primary/20"></div>
+                            <div className="w-0.5 h-full bg-border -mt-1"></div>
                           )}
                         </div>
-                        <div className={index < tour.itinerary.length - 1 ? 'pb-8' : ''}>
+                        <div className="pb-8">
                           <h3 className="text-2xl font-headline text-foreground pt-1">{day.title}</h3>
                           <p className="mt-2 text-muted-foreground">{day.description}</p>
                         </div>

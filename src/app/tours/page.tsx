@@ -49,11 +49,10 @@ export default function ToursPage() {
     <div>
       <section className="relative h-[40vh] w-full flex items-center justify-center">
         <Image
-          src="https://placehold.co/1920x600.png"
+          src="https://source.unsplash.com/1920x600?safari,vehicle,dusty"
           alt="Safari vehicle on a dusty road"
-          layout="fill"
-          objectFit="cover"
-          className="brightness-50"
+          fill
+          className="object-cover brightness-50"
           data-ai-hint="safari vehicle dusty"
         />
         <div className="relative z-10 text-center text-white p-4">

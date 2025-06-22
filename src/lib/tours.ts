@@ -6,11 +6,11 @@ export const tours: Tour[] = [
     slug: 'serengeti-migration-safari',
     name: 'Serengeti Migration Safari',
     description: 'Witness the Great Wildebeest Migration, one of nature\'s most spectacular events, across the vast plains of the Serengeti.',
-    heroImage: 'https://placehold.co/800x600.png',
+    heroImage: 'https://source.unsplash.com/800x600?serengeti,migration',
     images: [
-        'https://placehold.co/400x300.png', 
-        'https://placehold.co/400x300.png', 
-        'https://placehold.co/400x300.png'
+        'https://source.unsplash.com/400x300?wildebeest,river', 
+        'https://source.unsplash.com/400x300?lion,serengeti', 
+        'https://source.unsplash.com/400x300?ngorongoro,crater'
     ],
     price: 3500,
     duration: 7,
@@ -34,11 +34,11 @@ export const tours: Tour[] = [
     slug: 'kilimanjaro-climb-lemosho',
     name: 'Kilimanjaro Climb - Lemosho Route',
     description: 'Conquer the roof of Africa via the beautiful and scenic Lemosho route, known for its high success rates and stunning vistas.',
-    heroImage: 'https://placehold.co/800x600.png',
+    heroImage: 'https://source.unsplash.com/800x600?kilimanjaro,snow',
     images: [
-        'https://placehold.co/400x300.png', 
-        'https://placehold.co/400x300.png', 
-        'https://placehold.co/400x300.png'
+        'https://source.unsplash.com/400x300?kilimanjaro,trekking', 
+        'https://source.unsplash.com/400x300?kilimanjaro,sunrise', 
+        'https://source.unsplash.com/400x300?africa,mountain,landscape'
     ],
     price: 2800,
     duration: 8,
@@ -63,11 +63,11 @@ export const tours: Tour[] = [
     slug: 'zanzibar-beach-escape',
     name: 'Zanzibar Beach Escape',
     description: 'Relax and unwind on the pristine white-sand beaches of Zanzibar. Explore historic Stone Town and enjoy the turquoise waters.',
-    heroImage: 'https://placehold.co/800x600.png',
+    heroImage: 'https://source.unsplash.com/800x600?zanzibar,beach',
     images: [
-        'https://placehold.co/400x300.png', 
-        'https://placehold.co/400x300.png', 
-        'https://placehold.co/400x300.png'
+        'https://source.unsplash.com/400x300?zanzibar,dhow,boat', 
+        'https://source.unsplash.com/400x300?stone,town,zanzibar', 
+        'https://source.unsplash.com/400x300?snorkeling,ocean'
     ],
     price: 1200,
     duration: 5,
@@ -89,11 +89,11 @@ export const tours: Tour[] = [
     slug: 'tarangire-manyara-ngorongoro',
     name: 'Tanzania Classic Safari',
     description: 'A short but intense safari visiting three of Tanzania\'s northern circuit gems: Tarangire, Lake Manyara, and the Ngorongoro Crater.',
-    heroImage: 'https://placehold.co/800x600.png',
+    heroImage: 'https://source.unsplash.com/800x600?tarangire,elephants',
     images: [
-        'https://placehold.co/400x300.png', 
-        'https://placehold.co/400x300.png', 
-        'https://placehold.co/400x300.png'
+        'https://source.unsplash.com/400x300?tarangire,baobab', 
+        'https://source.unsplash.com/400x300?lake,manyara,flamingos', 
+        'https://source.unsplash.com/400x300?ngorongoro,safari'
     ],
     price: 1800,
     duration: 4,

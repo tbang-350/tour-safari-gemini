@@ -15,21 +15,21 @@ export default function AboutPage() {
       name: "Josephat 'Joseph' Mmbando",
       role: "Lead Guide & Founder",
       bio: "With over 15 years of experience in the Tanzanian bush, Joseph's passion for wildlife is contagious. He founded Safari Navigator to share the magic of his homeland with the world.",
-      avatar: "https://placehold.co/200x200.png",
+      avatar: "https://source.unsplash.com/200x200?guide,portrait,man",
       hint: "guide portrait"
     },
     {
       name: "Fatima Al-Jabir",
       role: "Kilimanjaro Specialist",
       bio: "Fatima has summited Kilimanjaro over 50 times. Her expertise in high-altitude trekking and relentless optimism ensures every climber is safe and motivated.",
-      avatar: "https://placehold.co/200x200.png",
+      avatar: "https://source.unsplash.com/200x200?guide,portrait,woman",
       hint: "female guide portrait"
     },
     {
       name: "David Chen",
       role: "Cultural Tour Coordinator",
       bio: "David bridges cultures, creating authentic interactions with local communities like the Maasai and Hadzabe. His tours offer a deeper understanding of Tanzanian life.",
-      avatar: "https://placehold.co/200x200.png",
+      avatar: "https://source.unsplash.com/200x200?guide,smiling,man",
       hint: "guide smiling"
     },
   ];
@@ -61,11 +61,10 @@ export default function AboutPage() {
     <div className="bg-background">
       <section className="relative h-[40vh] w-full flex items-center justify-center">
         <Image
-          src="https://placehold.co/1920x600.png"
+          src="https://source.unsplash.com/1920x600?acacia,tree,sunset"
           alt="Acacia tree at sunset"
-          layout="fill"
-          objectFit="cover"
-          className="brightness-50"
+          fill
+          className="object-cover brightness-50"
           data-ai-hint="acacia tree sunset"
         />
         <div className="relative z-10 text-center text-white p-4">
@@ -88,7 +87,7 @@ export default function AboutPage() {
             </div>
             <div>
               <Image
-                src="https://placehold.co/600x400.png"
+                src="https://source.unsplash.com/600x400?safari,vehicle,kilimanjaro"
                 alt="Safari vehicle with a view of Mount Kilimanjaro"
                 width={600}
                 height={400}

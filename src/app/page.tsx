@@ -13,19 +13,22 @@ export default function Home() {
   const testimonials = [
     {
       name: "Alex Johnson",
-      avatar: "https://placehold.co/100x100.png",
+      avatar: "https://source.unsplash.com/100x100?man,portrait",
+      avatarHint: "man portrait",
       text: "The Serengeti migration safari was a dream come true. Our guide, Joseph, was incredibly knowledgeable and made the experience unforgettable. I can't recommend Safari Navigator enough!",
       rating: 5,
     },
     {
       name: "Maria Garcia",
-      avatar: "https://placehold.co/100x100.png",
+      avatar: "https://source.unsplash.com/100x100?woman,portrait",
+      avatarHint: "woman portrait",
       text: "Climbing Kilimanjaro was the hardest and most rewarding thing I've ever done. The support from the Safari Navigator team was phenomenal from start to finish.",
       rating: 5,
     },
     {
       name: "David Smith",
-      avatar: "https://placehold.co/100x100.png",
+      avatar: "https://source.unsplash.com/100x100?man,portrait,smiling",
+      avatarHint: "man portrait smiling",
       text: "A perfect blend of adventure and relaxation. The Ngorongoro Crater was breathtaking, and the Zanzibar beaches were paradise. Flawless organization.",
       rating: 5,
     },
@@ -42,11 +45,10 @@ export default function Home() {
     <div className="flex flex-col">
       <section className="relative h-[60vh] md:h-[80vh] w-full">
         <Image
-          src="https://placehold.co/1920x1080.png"
+          src="https://source.unsplash.com/1920x1080?safari,sunset"
           alt="Elephants on a safari in Tanzania"
-          layout="fill"
-          objectFit="cover"
-          className="brightness-50"
+          fill
+          className="object-cover brightness-50"
           data-ai-hint="safari sunset"
         />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white p-4">
@@ -114,7 +116,7 @@ export default function Home() {
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     <Avatar>
-                      <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                      <AvatarImage src={testimonial.avatar} alt={testimonial.name} data-ai-hint={testimonial.avatarHint} />
                       <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <div className="ml-4">
@@ -147,7 +149,7 @@ export default function Home() {
                   alt={partner.name}
                   width={150}
                   height={50}
-                  objectFit="contain"
+                  className="object-contain"
                   data-ai-hint={partner.hint}
                 />
               </div>

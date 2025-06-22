@@ -94,18 +94,25 @@ export default function TourDetailPage({ params }: Props) {
                 </div>
 
                 <div className="my-12">
-                    <h2 className="text-3xl font-headline font-semibold text-foreground mb-6">Daily Itinerary</h2>
-                    <div className="space-y-8 border-l-2 border-primary/20 pl-6">
-                        {tour.itinerary.map(day => (
-                            <div key={day.day} className="relative">
-                                <div className="absolute -left-[35px] top-1 bg-primary text-primary-foreground w-10 h-10 rounded-full flex items-center justify-center font-bold font-headline">
-                                    {day.day}
-                                </div>
-                                <h3 className="text-2xl font-headline text-foreground">{day.title}</h3>
-                                <p className="mt-2 text-muted-foreground">{day.description}</p>
-                            </div>
-                        ))}
-                    </div>
+                  <h2 className="text-3xl font-headline font-semibold text-foreground mb-6">Daily Itinerary</h2>
+                  <div className="flex flex-col">
+                    {tour.itinerary.map((day, index) => (
+                      <div key={day.day} className="flex">
+                        <div className="flex flex-col items-center mr-6">
+                          <div className="bg-primary text-primary-foreground w-10 h-10 rounded-full flex items-center justify-center font-bold font-headline z-10 flex-shrink-0">
+                            {day.day}
+                          </div>
+                          {index < tour.itinerary.length - 1 && (
+                            <div className="w-0.5 h-full bg-primary/20"></div>
+                          )}
+                        </div>
+                        <div className={index < tour.itinerary.length - 1 ? 'pb-8' : ''}>
+                          <h3 className="text-2xl font-headline text-foreground pt-1">{day.title}</h3>
+                          <p className="mt-2 text-muted-foreground">{day.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 <div className="my-12">

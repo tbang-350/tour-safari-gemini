@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getFeaturedTours } from "@/lib/tours";
 import { TourCard } from "@/components/tour-card";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Star, Briefcase, ShieldCheck, Building, Handshake } from "lucide-react";
 import { getImageUrl } from "@/lib/pixabay";
 
 export default async function Home() {
@@ -33,30 +33,23 @@ export default async function Home() {
   ];
   
   const partnersData = [
-    { name: "TripAdvisor", hint: "TripAdvisor logo" },
-    { name: "Tanzania Tourist Board", hint: "Tanzania Tourist Board logo" },
-    { name: "Serena Hotels", hint: "Serena Hotels logo" },
-    { name: "Asilia Africa", hint: "Asilia Africa logo" },
+    { name: "TripAdvisor", icon: <Briefcase className="h-12 w-12" /> },
+    { name: "Tanzania Tourist Board", icon: <ShieldCheck className="h-12 w-12" /> },
+    { name: "Serena Hotels", icon: <Building className="h-12 w-12" /> },
+    { name: "Asilia Africa", icon: <Handshake className="h-12 w-12" /> },
   ];
 
   const [
       heroImage,
       testimonialAvatars,
-      partnerLogos
   ] = await Promise.all([
       getImageUrl("safari sunset", 1920, 1080),
       Promise.all(testimonialsData.map(t => getImageUrl(t.avatarQuery, 100, 100))),
-      Promise.all(partnersData.map(p => getImageUrl(p.hint, 150, 50, 'vector')))
   ]);
   
   const testimonials = testimonialsData.map((t, i) => ({
       ...t,
       avatar: testimonialAvatars[i],
-  }));
-
-  const partners = partnersData.map((p, i) => ({
-      ...p,
-      logo: partnerLogos[i],
   }));
 
   return (
@@ -157,20 +150,14 @@ export default async function Home() {
 
        <section id="partners" className="py-16 bg-secondary/50">
         <div className="container mx-auto px-4">
-          <h2 className="text-center text-2xl font-headline font-semibold text-muted-foreground mb-8">
+          <h2 className="text-center text-2xl font-headline font-semibold text-muted-foreground mb-12">
             Our Trusted Partners
           </h2>
-          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
-            {partners.map((partner, index) => (
-              <div key={index} className="opacity-60 hover:opacity-100 transition-opacity">
-                <Image
-                  src={partner.logo}
-                  alt={partner.name}
-                  width={150}
-                  height={50}
-                  className="object-contain"
-                  data-ai-hint={partner.hint}
-                />
+          <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8">
+            {partnersData.map((partner, index) => (
+              <div key={index} className="flex flex-col items-center gap-3 text-muted-foreground opacity-80 hover:opacity-100 hover:text-primary transition-all duration-300 cursor-pointer">
+                {partner.icon}
+                <span className="font-semibold text-sm">{partner.name}</span>
               </div>
             ))}
           </div>

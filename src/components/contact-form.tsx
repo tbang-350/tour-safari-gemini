@@ -5,10 +5,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export function ContactForm() {
     const { toast } = useToast();
+    const [hasMounted, setHasMounted] = useState(false);
+
+    useEffect(() => {
+        setHasMounted(true);
+    }, []);
     
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -18,6 +23,10 @@ export function ContactForm() {
         });
         e.currentTarget.reset();
     };
+
+    if (!hasMounted) {
+        return null;
+    }
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">

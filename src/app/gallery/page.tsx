@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -58,6 +58,10 @@ export default function GalleryPage() {
                   </div>
                 </DialogTrigger>
                 <DialogContent className="max-w-4xl p-0 border-0">
+                  <DialogHeader className="sr-only">
+                    <DialogTitle>{image.alt}</DialogTitle>
+                    <DialogDescription>A larger view of the image: {image.alt}</DialogDescription>
+                  </DialogHeader>
                   <Image
                     src={image.src.replace(/(\d+x\d+)/, '1200x800')/*.replace('&', '&amp;')*/ /*Removed this line, as it doesn't seem necessary anymore*/ }
                     alt={image.alt}

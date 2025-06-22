@@ -6,17 +6,12 @@ import type { Metadata } from "next";
 import { WhatsappIcon } from "@/components/icons/whatsapp-icon";
 import { getImageUrl } from "@/lib/pixabay";
 import { ContactForm } from "@/components/contact-form";
-import dynamic from 'next/dynamic';
+import Map from "@/components/map";
 
 export const metadata: Metadata = {
   title: "Contact Us",
   description: "Get in touch with Safari Navigator to plan your dream safari. Contact us via our inquiry form, email, phone, or WhatsApp.",
 };
-
-const Map = dynamic(() => import('@/components/map'), {
-    ssr: false,
-    loading: () => <div className="h-[400px] w-full rounded-lg shadow-lg bg-muted animate-pulse" />
-});
 
 export default async function ContactPage() {
     const heroImage = await getImageUrl("path forest", 1280, 512);

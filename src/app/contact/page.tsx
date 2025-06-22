@@ -6,17 +6,21 @@ import type { Metadata } from "next";
 import { WhatsappIcon } from "@/components/icons/whatsapp-icon";
 import { getImageUrl } from "@/lib/pixabay";
 import { ContactForm } from "@/components/contact-form";
+import dynamic from 'next/dynamic';
 
 export const metadata: Metadata = {
   title: "Contact Us",
   description: "Get in touch with Safari Navigator to plan your dream safari. Contact us via our inquiry form, email, phone, or WhatsApp.",
 };
 
+const Map = dynamic(() => import('@/components/map'), {
+    ssr: false,
+    loading: () => <div className="h-[400px] w-full rounded-lg shadow-lg bg-muted animate-pulse" />
+});
+
 export default async function ContactPage() {
-    const [heroImage, mapImage] = await Promise.all([
-        getImageUrl("path forest", 1280, 512),
-        getImageUrl("arusha map", 600, 400),
-    ]);
+    const heroImage = await getImageUrl("path forest", 1280, 512);
+
   return (
     <div>
       <section className="relative h-[40vh] w-full flex items-center justify-center">
@@ -80,7 +84,7 @@ export default async function ContactPage() {
                </div>
 
                <div className="mt-8">
-                <Image src={mapImage} width={600} height={400} alt="Map showing office location in Arusha" className="rounded-lg shadow-lg" data-ai-hint="arusha map" />
+                <Map />
                </div>
             </div>
           </div>

@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { getAllTours } from "@/lib/tours";
 import { TourListing } from "@/components/tour-listing";
+import { getImageUrl } from "@/lib/pixabay";
 
 export default async function ToursPage() {
   const allTours = await getAllTours();
-  const heroImage = await (await fetch('https://pixabay.com/api/?key=13290727-40073939eb5d4175a5e52b74e&q=safari+vehicle+dusty&image_type=photo&per_page=3')).json().then(d => d.hits[0].largeImageURL);
+  const heroImage = await getImageUrl("safari vehicle dusty", 1280, 512);
 
 
   return (

@@ -1,4 +1,3 @@
-
 'use server';
 
 const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
@@ -15,9 +14,7 @@ export async function getImageUrl(query: string, width: number, height: number):
     key: PIXABAY_API_KEY,
     q: query,
     image_type: 'photo',
-    orientation: width > height ? 'horizontal' : 'vertical',
-    per_page: '3', // Fetch a few images to have a choice
-    safesearch: 'true',
+    per_page: '3',
   });
 
   try {

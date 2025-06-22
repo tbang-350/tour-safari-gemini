@@ -1,3 +1,4 @@
+
 'use server';
 
 const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
@@ -10,17 +11,29 @@ export async function getImageUrl(query: string, width: number, height: number):
     return `https://placehold.co/${width}x${height}.png`;
   }
 
+  // Format the query to be URL-friendly, replacing spaces with '+' as recommended by Pixabay docs.
+  const formattedQuery = query.trim().replace(/\s+/g, '+');
+
+  // If the query is empty after formatting, return a placeholder.
+  if (!formattedQuery) {
+    console.warn("Empty query passed to getImageUrl. Using placeholder.");
+    return `https://placehold.co/${width}x${height}.png`;
+  }
+
   const params = new URLSearchParams({
     key: PIXABAY_API_KEY,
-    q: query,
+    q: formattedQuery,
     image_type: 'photo',
+    orientation: 'horizontal', // Prefer landscape images for better layout fit
     per_page: '3',
   });
 
   try {
     const response = await fetch(`${API_URL}?${params.toString()}`);
     if (!response.ok) {
-        throw new Error(`Pixabay API request failed with status ${response.status}`);
+        // Provide more context in the error message for easier debugging
+        const errorText = await response.text();
+        throw new Error(`Pixabay API request failed with status ${response.status}: ${errorText}`);
     }
     const data = await response.json();
 
@@ -33,5 +46,6 @@ export async function getImageUrl(query: string, width: number, height: number):
   }
 
   // Fallback to placeholder if the API call fails or returns no results.
+  console.warn(`No image found for query "${query}". Using placeholder.`);
   return `https://placehold.co/${width}x${height}.png`;
 }

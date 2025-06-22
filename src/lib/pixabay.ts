@@ -1,10 +1,11 @@
 
 'use server';
 
-const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
 const API_URL = 'https://pixabay.com/api/';
 
 export async function getImageUrl(query: string, width: number, height: number): Promise<string> {
+  const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
+  
   // Use a placeholder if the API key is missing, so the app doesn't break.
   if (!PIXABAY_API_KEY || PIXABAY_API_KEY === 'YOUR_PIXABAY_API_KEY') {
     console.warn("Pixabay API key is not configured. Using placeholder images.");

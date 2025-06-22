@@ -31,10 +31,22 @@ export default async function Home() {
       rating: 5,
     },
   ];
+  
+  const partnersData = [
+    { name: "TripAdvisor", hint: "TripAdvisor logo" },
+    { name: "Tanzania Tourist Board", hint: "Tanzania Tourist Board logo" },
+    { name: "Serena Hotels", hint: "Serena Hotels logo" },
+    { name: "Asilia Africa", hint: "Asilia Africa logo" },
+  ];
 
-  const [heroImage, ...testimonialAvatars] = await Promise.all([
-    getImageUrl("safari sunset", 1920, 1080),
-    ...testimonialsData.map(t => getImageUrl(t.avatarQuery, 100, 100))
+  const [
+      heroImage,
+      testimonialAvatars,
+      partnerLogos
+  ] = await Promise.all([
+      getImageUrl("safari sunset", 1920, 1080),
+      Promise.all(testimonialsData.map(t => getImageUrl(t.avatarQuery, 100, 100))),
+      Promise.all(partnersData.map(p => getImageUrl(p.hint, 150, 50, 'vector')))
   ]);
   
   const testimonials = testimonialsData.map((t, i) => ({
@@ -42,12 +54,10 @@ export default async function Home() {
       avatar: testimonialAvatars[i],
   }));
 
-  const partners = [
-    { name: "TripAdvisor", logo: "https://placehold.co/150x50.png", hint: "TripAdvisor logo" },
-    { name: "Tanzania Tourist Board", logo: "https://placehold.co/150x50.png", hint: "Tanzania Tourist Board logo" },
-    { name: "Serena Hotels", logo: "https://placehold.co/150x50.png", hint: "Serena Hotels logo" },
-    { name: "Asilia Africa", logo: "https://placehold.co/150x50.png", hint: "Asilia Africa logo" },
-  ];
+  const partners = partnersData.map((p, i) => ({
+      ...p,
+      logo: partnerLogos[i],
+  }));
 
   return (
     <div className="flex flex-col">

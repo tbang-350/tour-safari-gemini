@@ -3,7 +3,12 @@
 
 const API_URL = 'https://pixabay.com/api/';
 
-export async function getImageUrl(query: string, width: number, height: number): Promise<string> {
+export async function getImageUrl(
+  query: string, 
+  width: number, 
+  height: number, 
+  imageType: 'photo' | 'illustration' | 'vector' = 'photo'
+): Promise<string> {
   const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
   
   // Use a placeholder if the API key is missing, so the app doesn't break.
@@ -24,8 +29,7 @@ export async function getImageUrl(query: string, width: number, height: number):
   const params = new URLSearchParams({
     key: PIXABAY_API_KEY,
     q: formattedQuery,
-    image_type: 'photo',
-    orientation: 'horizontal', // Prefer landscape images for better layout fit
+    image_type: imageType,
     per_page: '3',
   });
 

@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, useRef } from 'react';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useEffect, useState, useRef, useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -29,7 +29,7 @@ function SubmitButton() {
 
 export function InquiryModal({ tourName }: { tourName: string }) {
   const [open, setOpen] = useState(false);
-  const [state, formAction] = useFormState(getTourRecommendations, initialState);
+  const [state, formAction] = useActionState(getTourRecommendations, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);

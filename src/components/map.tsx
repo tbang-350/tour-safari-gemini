@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 // This is a workaround for a known issue with react-leaflet and Next.js
 // It ensures the marker icons are loaded correctly.
+// We create the icon definition here but assign it inside a useEffect hook.
 const defaultIcon = new L.Icon({
     iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
     iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
@@ -16,7 +17,6 @@ const defaultIcon = new L.Icon({
     shadowSize: [41, 41]
 });
 
-L.Marker.prototype.options.icon = defaultIcon;
 
 const arushaPosition: [number, number] = [-3.3869, 36.6829]; // Coordinates for Arusha
 
@@ -24,6 +24,8 @@ const Map = () => {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
+        // This assignment must be done on the client-side.
+        L.Marker.prototype.options.icon = defaultIcon;
         setIsMounted(true);
     }, []);
 

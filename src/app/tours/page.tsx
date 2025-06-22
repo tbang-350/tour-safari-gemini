@@ -5,7 +5,7 @@ import { getImageUrl } from "@/lib/pixabay";
 
 export default async function ToursPage() {
   const allTours = await getAllTours();
-  const heroImage = await getImageUrl("safari vehicle dusty", 1280, 512);
+  const heroImage = await getImageUrl("safari jeep", 1280, 512);
 
 
   return (
@@ -16,7 +16,7 @@ export default async function ToursPage() {
           alt="Safari vehicle on a dusty road"
           fill
           className="object-cover brightness-50"
-          data-ai-hint="safari vehicle dusty"
+          data-ai-hint="safari jeep"
         />
         <div className="relative z-10 text-center text-white p-4">
           <h1 className="text-4xl md:text-5xl font-headline font-bold !text-primary-foreground">Tours & Packages</h1>

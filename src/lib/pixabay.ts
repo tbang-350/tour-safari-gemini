@@ -18,8 +18,6 @@ export async function getImageUrl(query: string, width: number, height: number):
     orientation: width > height ? 'horizontal' : 'vertical',
     per_page: '3', // Fetch a few images to have a choice
     safesearch: 'true',
-    min_width: String(width),
-    min_height: String(height),
   });
 
   try {

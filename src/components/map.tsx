@@ -1,21 +1,25 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import 'leaflet/dist/leaflet.css';
 
 const arushaPosition: [number, number] = [-3.3869, 36.6829]; // Coordinates for Arusha
 
 const Map = () => {
+    // This state will be false on the server and true on the client after mounting.
     const [isMounted, setIsMounted] = useState(false);
 
+    // This effect runs only on the client, after the component has mounted.
     useEffect(() => {
         setIsMounted(true);
     }, []);
 
+    // On the server or before the client has mounted, we render a placeholder.
     if (!isMounted) {
         return <div className="h-[400px] w-full rounded-lg shadow-lg bg-muted animate-pulse" />;
     }
     
-    // Dynamically require these components only on the client-side after mounting
+    // We can only require these client-side libraries after we've confirmed we're on the client.
     const { MapContainer, TileLayer, Marker, Popup } = require('react-leaflet');
     const L = require('leaflet');
     

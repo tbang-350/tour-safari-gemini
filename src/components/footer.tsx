@@ -1,8 +1,17 @@
+'use client';
+
 import Link from "next/link";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import { WhatsappIcon } from "./icons/whatsapp-icon";
+import { useEffect, useState } from "react";
 
 export default function Footer() {
+  const [year, setYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="bg-secondary text-secondary-foreground border-t border-border">
       <div className="container mx-auto px-4 py-12">
@@ -41,7 +50,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-border/50 text-center text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Safari Navigator. All Rights Reserved.</p>
+          <p>&copy; {year} Safari Navigator. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

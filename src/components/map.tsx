@@ -2,11 +2,8 @@
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
-// This is a workaround for a known issue with react-leaflet and Next.js
-// It ensures the marker icons are loaded correctly.
-// We create the icon definition here but assign it inside a useEffect hook.
 const defaultIcon = new L.Icon({
     iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
     iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
@@ -24,35 +21,41 @@ const Map = () => {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        // This assignment must be done on the client-side.
-        L.Marker.prototype.options.icon = defaultIcon;
         setIsMounted(true);
     }, []);
+    
+    // Memoize the map component to prevent it from re-rendering and
+    // trying to re-initialize the map on the same container.
+    // This is a common solution for 'Map container is already initialized' errors in React.
+    const displayMap = useMemo(
+        () => (
+            <MapContainer 
+                center={arushaPosition} 
+                zoom={14} 
+                scrollWheelZoom={false} 
+                className="h-[400px] w-full rounded-lg shadow-lg"
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={arushaPosition} icon={defaultIcon}>
+                <Popup>
+                  <b>Safari Navigator HQ</b>
+                  <br />
+                  Sokoine Road, Arusha, Tanzania
+                </Popup>
+              </Marker>
+            </MapContainer>
+        ),
+        []
+    );
 
     if (!isMounted) {
         return <div className="h-[400px] w-full rounded-lg shadow-lg bg-muted animate-pulse" />;
     }
 
-  return (
-    <MapContainer 
-        center={arushaPosition} 
-        zoom={14} 
-        scrollWheelZoom={false} 
-        className="h-[400px] w-full rounded-lg shadow-lg"
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker position={arushaPosition}>
-        <Popup>
-          <b>Safari Navigator HQ</b>
-          <br />
-          Sokoine Road, Arusha, Tanzania
-        </Popup>
-      </Marker>
-    </MapContainer>
-  );
+    return displayMap;
 };
 
 export default Map;

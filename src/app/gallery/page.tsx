@@ -9,25 +9,25 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
     const images = [
-      { src: "https://images.unsplash.com/photo-1614027164847-1b28acc15a11?q=80&w=600&h=400&auto=format&fit=crop", alt: "A lion resting on a rock", hint: "lion resting", orientation: "landscape" },
-      { src: "https://images.unsplash.com/photo-1555539368-83e2b1464654?q=80&w=400&h=600&auto=format&fit=crop", alt: "A giraffe eating from a tall acacia tree", hint: "giraffe acacia", orientation: "portrait" },
-      { src: "https://images.unsplash.com/photo-1593976829468-d0658a4d4a8e?q=80&w=600&h=400&auto=format&fit=crop", alt: "A herd of elephants by a waterhole", hint: "elephants waterhole", orientation: "landscape" },
-      { src: "https://images.unsplash.com/photo-1551009175-8a68da93d5f9?q=80&w=600&h=400&auto=format&fit=crop", alt: "The summit of Mount Kilimanjaro at sunrise", hint: "kilimanjaro sunrise", orientation: "landscape" },
-      { src: "https://images.unsplash.com/photo-1621535263935-5b432a513d29?q=80&w=600&h=400&auto=format&fit=crop", alt: "Wildebeest crossing the Mara River", hint: "wildebeest migration", orientation: "landscape" },
-      { src: "https://images.unsplash.com/photo-1529128653609-b5f79a6133a8?q=80&w=400&h=600&auto=format&fit=crop", alt: "A Maasai warrior in traditional clothing", hint: "maasai warrior", orientation: "portrait" },
-      { src: "https://images.unsplash.com/photo-1547471080-7cc2d5d88e93?q=80&w=600&h=400&auto=format&fit=crop", alt: "A beautiful sunset over the Serengeti plains", hint: "serengeti sunset", orientation: "landscape" },
-      { src: "https://images.unsplash.com/photo-1577558486339-38295627f1b3?q=80&w=600&h=400&auto=format&fit=crop", alt: "A leopard lounging on a tree branch", hint: "leopard tree", orientation: "landscape" },
-      { src: "https://images.unsplash.com/photo-1574895624779-79a786a347b0?q=80&w=600&h=400&auto=format&fit=crop", alt: "Flamingos in Lake Manyara", hint: "flamingos lake", orientation: "landscape" },
-      { src: "https://images.unsplash.com/photo-1591242379930-b37d465f0b5d?q=80&w=400&h=600&auto=format&fit=crop", alt: "A stunning view of the Ngorongoro Crater", hint: "ngorongoro crater", orientation: "portrait" },
-      { src: "https://images.unsplash.com/photo-1619810340209-dec70155a62e?q=80&w=600&h=400&auto=format&fit=crop", alt: "A traditional dhow boat on the coast of Zanzibar", hint: "zanzibar dhow", orientation: "landscape" },
-      { src: "https://images.unsplash.com/photo-1601735183499-1a13a8335359?q=80&w=600&h=400&auto=format&fit=crop", alt: "A family of cheetahs on the savannah", hint: "cheetahs savannah", orientation: "landscape" },
+      { src: "https://cdn.pixabay.com/photo/2018/05/11/15/28/lion-3390315_1280.jpg", alt: "A lion resting on a rock", hint: "lion resting", orientation: "landscape" },
+      { src: "https://cdn.pixabay.com/photo/2015/10/06/22/09/giraffe-974513_1280.jpg", alt: "A giraffe eating from a tall acacia tree", hint: "giraffe acacia", orientation: "portrait" },
+      { src: "https://cdn.pixabay.com/photo/2016/11/14/04/45/elephant-1822636_1280.jpg", alt: "A herd of elephants by a waterhole", hint: "elephants waterhole", orientation: "landscape" },
+      { src: "https://cdn.pixabay.com/photo/2016/09/01/18/59/kilimanjaro-1636829_1280.jpg", alt: "The summit of Mount Kilimanjaro at sunrise", hint: "kilimanjaro sunrise", orientation: "landscape" },
+      { src: "https://cdn.pixabay.com/photo/2019/10/29/18/51/wildebeest-4588267_1280.jpg", alt: "Wildebeest crossing the Mara River", hint: "wildebeest migration", orientation: "landscape" },
+      { src: "https://cdn.pixabay.com/photo/2015/04/14/11/38/maasai-722129_1280.jpg", alt: "A Maasai warrior in traditional clothing", hint: "maasai warrior", orientation: "portrait" },
+      { src: "https://cdn.pixabay.com/photo/2017/10/22/10/16/serengeti-2877477_1280.jpg", alt: "A beautiful sunset over the Serengeti plains", hint: "serengeti sunset", orientation: "landscape" },
+      { src: "https://cdn.pixabay.com/photo/2013/04/06/11/33/leopard-101116_1280.jpg", alt: "A leopard lounging on a tree branch", hint: "leopard tree", orientation: "landscape" },
+      { src: "https://cdn.pixabay.com/photo/2017/02/18/13/55/flamingos-2077378_1280.jpg", alt: "Flamingos in Lake Manyara", hint: "flamingos lake", orientation: "landscape" },
+      { src: "https://cdn.pixabay.com/photo/2019/11/02/05/52/ngorongoro-4595228_1280.jpg", alt: "A stunning view of the Ngorongoro Crater", hint: "ngorongoro crater", orientation: "portrait" },
+      { src: "https://cdn.pixabay.com/photo/2013/03/02/02/41/zanzibar-88989_1280.jpg", alt: "A traditional dhow boat on the coast of Zanzibar", hint: "zanzibar dhow", orientation: "landscape" },
+      { src: "https://cdn.pixabay.com/photo/2019/09/04/08/24/cheetah-4450418_1280.jpg", alt: "A family of cheetahs on the savannah", hint: "cheetahs savannah", orientation: "landscape" },
     ];
 
   return (
     <div>
       <section className="relative h-[40vh] w-full flex items-center justify-center">
         <Image
-          src="https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1920&auto=format&fit=crop"
+          src="https://cdn.pixabay.com/photo/2017/10/22/10/16/serengeti-2877477_1280.jpg"
           alt="A colorful sunset over the savannah"
           fill
           className="object-cover brightness-50"
@@ -44,9 +44,8 @@ export default function GalleryPage() {
           <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             {images.map((image, index) => {
               const isPortrait = image.orientation === 'portrait';
-              const largeWidth = isPortrait ? 800 : 1200;
-              const largeHeight = isPortrait ? 1200 : 800;
-              const largeSrc = image.src.replace(/w=\d+/, `w=${largeWidth}`).replace(/h=\d+/, `h=${largeHeight}`);
+              const width = isPortrait ? 400 : 600;
+              const height = isPortrait ? 600 : 400;
 
               return (
               <Dialog key={index}>
@@ -55,8 +54,8 @@ export default function GalleryPage() {
                     <Image
                       src={image.src}
                       alt={image.alt}
-                      width={isPortrait ? 400 : 600}
-                      height={isPortrait ? 600 : 400}
+                      width={width}
+                      height={height}
                       className="w-full h-auto object-cover"
                       data-ai-hint={image.hint}
                     />
@@ -68,10 +67,10 @@ export default function GalleryPage() {
                     <DialogDescription className="sr-only">A larger view of the image: {image.alt}</DialogDescription>
                   </DialogHeader>
                   <Image
-                    src={largeSrc}
+                    src={image.src}
                     alt={image.alt}
-                    width={largeWidth}
-                    height={largeHeight}
+                    width={1200}
+                    height={800}
                     className="w-full h-auto object-contain rounded-lg"
                     data-ai-hint={image.hint}
                   />

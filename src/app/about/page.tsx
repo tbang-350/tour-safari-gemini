@@ -15,21 +15,21 @@ export default function AboutPage() {
       name: "Josephat 'Joseph' Mmbando",
       role: "Lead Guide & Founder",
       bio: "With over 15 years of experience in the Tanzanian bush, Joseph's passion for wildlife is contagious. He founded Safari Navigator to share the magic of his homeland with the world.",
-      avatar: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?q=80&w=200&h=200&auto=format&fit=crop",
+      avatar: "https://cdn.pixabay.com/photo/2015/01/08/18/30/man-593333_960_720.jpg",
       hint: "guide portrait"
     },
     {
       name: "Fatima Al-Jabir",
       role: "Kilimanjaro Specialist",
       bio: "Fatima has summited Kilimanjaro over 50 times. Her expertise in high-altitude trekking and relentless optimism ensures every climber is safe and motivated.",
-      avatar: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=200&h=200&auto=format&fit=crop",
+      avatar: "https://cdn.pixabay.com/photo/2021/07/20/12/35/woman-6480136_960_720.jpg",
       hint: "female guide portrait"
     },
     {
       name: "David Chen",
       role: "Cultural Tour Coordinator",
       bio: "David bridges cultures, creating authentic interactions with local communities like the Maasai and Hadzabe. His tours offer a deeper understanding of Tanzanian life.",
-      avatar: "https://images.unsplash.com/photo-1615109398623-88346a601842?q=80&w=200&h=200&auto=format&fit=crop",
+      avatar: "https://cdn.pixabay.com/photo/2016/11/18/19/07/happy-1836445_960_720.jpg",
       hint: "guide smiling"
     },
   ];
@@ -61,7 +61,7 @@ export default function AboutPage() {
     <div className="bg-background">
       <section className="relative h-[40vh] w-full flex items-center justify-center">
         <Image
-          src="https://images.unsplash.com/photo-1517088455886-c33a9b2c5893?q=80&w=1920&auto=format&fit=crop"
+          src="https://cdn.pixabay.com/photo/2015/04/10/16/26/africa-716491_1280.jpg"
           alt="Acacia tree at sunset"
           fill
           className="object-cover brightness-50"
@@ -87,7 +87,7 @@ export default function AboutPage() {
             </div>
             <div>
               <Image
-                src="https://images.unsplash.com/photo-1525037471780-705806f79093?q=80&w=600&auto=format&fit=crop"
+                src="https://cdn.pixabay.com/photo/2015/06/20/09/58/mount-kilimanjaro-815309_1280.jpg"
                 alt="Safari vehicle with a view of Mount Kilimanjaro"
                 width={600}
                 height={400}

@@ -1,13 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { WhatsappIcon } from "@/components/icons/whatsapp-icon";
 import { getImageUrl } from "@/lib/pixabay";
+import { ContactForm } from "@/components/contact-form";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -40,27 +38,7 @@ export default async function ContactPage() {
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div>
               <h2 className="text-3xl font-headline font-semibold text-foreground mb-4">Send us an Inquiry</h2>
-              <form className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Full Name</Label>
-                    <Input id="name" placeholder="John Doe" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input id="email" type="email" placeholder="you@example.com" />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="subject">Subject</Label>
-                  <Input id="subject" placeholder="Inquiry about Serengeti Safari" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea id="message" placeholder="Tell us about your dream safari..." rows={6} />
-                </div>
-                <Button type="submit" size="lg" className="w-full">Send Message</Button>
-              </form>
+              <ContactForm />
             </div>
 
             <div className="space-y-8">

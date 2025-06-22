@@ -78,7 +78,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="prose lg:prose-lg max-w-none text-muted-foreground">
-              <h2 className="text-3xl md:text-4xl font-headline font-semibold text-foreground">Our Story &amp; Mission</h2>
+              <h2 className="text-3xl md:text-4xl font-headline font-semibold text-foreground">Our Story & Mission</h2>
               <p>
                 Founded from a deep love for Tanzania's natural wonders, Safari Navigator was born out of a desire to create more than just tours; we wanted to craft life-changing experiences. We saw an opportunity to offer travelers a more intimate, authentic, and responsible way to explore East Africa.
               </p>

@@ -41,7 +41,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-border/50 text-center text-muted-foreground">
-          <p>&amp;copy; {new Date().getFullYear()} Safari Navigator. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Safari Navigator. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

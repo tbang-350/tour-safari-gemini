@@ -57,7 +57,7 @@ export default function ToursPage() {
           data-ai-hint="safari vehicle dusty"
         />
         <div className="relative z-10 text-center text-white p-4">
-          <h1 className="text-4xl md:text-5xl font-headline font-bold !text-primary-foreground">Tours &amp; Packages</h1>
+          <h1 className="text-4xl md:text-5xl font-headline font-bold !text-primary-foreground">Tours & Packages</h1>
           <p className="mt-2 text-lg md:text-xl !text-primary-foreground/90">Find Your Perfect African Adventure</p>
         </div>
       </section>
